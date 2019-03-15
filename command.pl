@@ -5,39 +5,39 @@ use Tk;
 my ($printHelp, $commands, $delimiter);
 GetOptions("commands=s"             =>\$commands,
            "delimiter=s"            =>\$delimiter,
-		   "h"                      =>\$printHelp
-		   );
+           "h"                      =>\$printHelp
+	   );
 		   
 if ($commands)
 {
     my @cmd_list;
-	if($delimiter)
-	{
-		@cmd_list = split($delimiter, $commands);
-	}
-	else
-	{
-		@cmd_list = split(',', $commands);
-	}
-	foreach my $cmd ( @cmd_list )
-	{
-		print "Executing: $cmd\n";
-		system($cmd);
-	}
+    if($delimiter)
+    {
+        @cmd_list = split($delimiter, $commands);
+    }
+    else
+    {
+        @cmd_list = split(',', $commands);
+    }
+    foreach my $cmd ( @cmd_list )
+    {
+        print "Executing: $cmd\n";
+        system($cmd);
+    }
 	
-	# Main Window
+    # Main Window
     my $mw = new MainWindow;
     $mw -> messageBox(-message=>"Successfully completed the commands: $commands");
 }
 else
 {
-	showUsage();
+    showUsage();
     exit 1;
 }
 
 if($printHelp)
 {
-	showUsage();
+    showUsage();
     exit 1;
 }
 
